@@ -1,5 +1,7 @@
+using ECS.Systems;
 using Project.CustomSceneManagement;
 using Project.Sessions;
+using Project.Ticking;
 using ThirdParty.EventBus;
 using Zenject;
 
@@ -9,9 +11,13 @@ namespace ProjectInstallers
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<SessionInfo>().AsSingle();
             Container.BindInterfacesTo<EventBus>().AsSingle();
             Container.BindInterfacesTo<CustomSceneManagement>().AsSingle();
+            
+            Container.BindInterfacesTo<SessionInfo>().AsSingle();
+            
+            Container.BindInterfacesTo<GameplayTicker>().AsSingle();
+            Container.BindInterfacesTo<MainECSContextInstaller>().AsSingle();
         }
     }
 }
