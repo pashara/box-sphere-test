@@ -60,7 +60,7 @@ namespace Project.BattleLogic.BattleContextStates.States
 
         private SpawnState.SpawnStatePayload CreatePayload()
         {
-            var teamProcessor = _container.Instantiate<TeamMakeProcessor>();
+            var teamProcessor = _container.Instantiate<MatchMakingProcessor>();
             var spawnData = teamProcessor.Calculate();
             var teamsData = teamProcessor.CalculateTeamsColor();
             var payload = new SpawnState.SpawnStatePayload(teamsData, spawnData);

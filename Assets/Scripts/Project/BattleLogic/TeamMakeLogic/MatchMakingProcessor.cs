@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace Project.BattleLogic.TeamMakeLogic
 {
-    public class TeamMakeProcessor
+    public class MatchMakingProcessor
     {
         private readonly ISpawnerAnchorsProvider _anchorsProvider;
         private readonly ISpawnPointsCalculator _spawnPointsCalculator;
         private readonly IGridSizeProvider _gridSizeProvider;
 
-        public TeamMakeProcessor(
+        public MatchMakingProcessor(
             ISpawnerAnchorsProvider anchorsProvider, 
             ISpawnPointsCalculator spawnPointsCalculator,
             IGridSizeProvider gridSizeProvider
