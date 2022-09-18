@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using ProjectCore.BattleLogic.BattleContextStates;
+using ProjectCore.BattleLogic.EnvironmentProviders;
 using UnityEngine;
+using Zenject;
 
-public class BattleSceneInstaller : MonoBehaviour
+namespace ProjectCore.BattleLogic
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BattleSceneInstaller : MonoInstaller
     {
-        
-    }
+        [SerializeField] private SpawnerAnchorsProvider spawnerAnchorsProvider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesTo(typeof(SpawnerAnchorsProvider)).FromInstance(spawnerAnchorsProvider);
+            Container.BindInterfacesTo<BattleContextStateMachine>().FromInstance(spawnerAnchorsProvider);
+        }
     }
 }

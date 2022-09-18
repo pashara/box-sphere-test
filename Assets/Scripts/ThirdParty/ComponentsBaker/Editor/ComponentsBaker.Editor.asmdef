@@ -1,0 +1,16 @@
+{
+    "name": "ComponentsBaker.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:25b10f50d7c06834ea8ea93020bf8337"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
