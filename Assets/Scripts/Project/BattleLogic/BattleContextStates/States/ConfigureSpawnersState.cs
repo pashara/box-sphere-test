@@ -1,9 +1,10 @@
-﻿using ProjectCore.BattleLogic.BattleUi.VisibilityServices;
-using ProjectCore.BattleLogic.GridSizeInstallers;
+﻿using Project.BattleLogic.GridSizeInstallers;
+using Project.BattleLogic.VisibilityServices;
+using ProjectShared;
 using ThirdParty.EventBus;
 using UniRx;
 
-namespace ProjectCore.BattleLogic.BattleContextStates.States
+namespace Project.BattleLogic.BattleContextStates.States
 {
     public class ConfigureSpawnersState : IBattleContextState
     {

@@ -1,12 +1,12 @@
 using Cysharp.Threading.Tasks;
-using ProjectCore.BattleLogic.BattleUi.Panels;
-using ProjectCore.BattleLogic.BattleUi.VisibilityServices;
-using ProjectCore.ProjectShared;
+using Project.BattleLogic.VisibilityServices;
+using ProjectShared;
 using UniRx;
 using UnityEngine;
+using UserInterface.BattleUi.Panels;
 using Zenject;
 
-namespace ProjectCore.BattleLogic.BattleUi
+namespace UserInterface.BattleUi
 {
     public class BattleScreen : MonoBehaviour, IScreen
     {

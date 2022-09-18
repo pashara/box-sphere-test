@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace ProjectCore.ComponentsBaker.Editor
+namespace ThirdParty.ComponentsBaker.Editor
 {
     [CustomEditor(typeof(ComponentsBaker), true)]
     public class ComponentsBakerEditor : UnityEditor.Editor

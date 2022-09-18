@@ -1,6 +1,6 @@
 ﻿using UniRx;
 
-namespace ProjectCore.Common.Visibility
+namespace Project.Common
 {
     public interface IVisibilityService
     {
@@ -10,17 +10,17 @@ namespace ProjectCore.Common.Visibility
     
     public abstract class BaseVisibilityService
     {
-        protected readonly ReactiveProperty<bool> _visibleStateHandler = new ReactiveProperty<bool>();
+        protected readonly ReactiveProperty<bool> VisibleStateHandler = new();
         public ReadOnlyReactiveProperty<bool> OnVisibleState { get; }
 
-        public BaseVisibilityService()
+        protected BaseVisibilityService()
         {
-            OnVisibleState = new (_visibleStateHandler);
+            OnVisibleState = new (VisibleStateHandler);
         }
 
         public void AffectVisibility(bool isVisible)
         {
-            _visibleStateHandler.Value = isVisible;
+            VisibleStateHandler.Value = isVisible;
         }
     }
 }

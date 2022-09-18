@@ -1,10 +1,10 @@
 ﻿using System;
-using ProjectCore.Common;
-using ProjectCore.Common.Visibility;
+using Project.Common;
+using ProjectShared;
 using ThirdParty.EventBus;
 using UniRx;
 
-namespace ProjectCore.BattleLogic.BattleUi.VisibilityServices
+namespace Project.BattleLogic.VisibilityServices
 {
     public interface IBattleCancelVisibilityService : IVisibilityService
     {
@@ -17,10 +17,10 @@ namespace ProjectCore.BattleLogic.BattleUi.VisibilityServices
         public BattleCancelVisibilityService(IEventBus eventBus) : base()
         {
             eventBus.WasTriggered(EventKeys.ReadyForShowCancelContext)
-                .Subscribe(x => _visibleStateHandler.Value = true).AddTo(_disposable);
+                .Subscribe(x => VisibleStateHandler.Value = true).AddTo(_disposable);
 
             eventBus.WasTriggered(EventKeys.DismissToShowCancelContext)
-                .Subscribe(x => _visibleStateHandler.Value = false).AddTo(_disposable);
+                .Subscribe(x => VisibleStateHandler.Value = false).AddTo(_disposable);
         }
         
         public void Dispose()

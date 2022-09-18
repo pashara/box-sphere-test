@@ -1,6 +1,6 @@
-﻿using ProjectCore.ProjectShared.Sessions;
+﻿using ProjectShared.Sessions;
 
-namespace ProjectCore.Sessions
+namespace Project.Sessions
 {
     public interface ISessionInfoWritable : ISessionInfo
     {

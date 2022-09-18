@@ -1,4 +1,4 @@
-﻿namespace ProjectCore.ProjectShared.Sessions
+﻿namespace ProjectShared.Sessions
 {
     public interface ISessionInfo
     {

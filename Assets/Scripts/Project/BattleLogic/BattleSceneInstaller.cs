@@ -1,9 +1,9 @@
-using ProjectCore.BattleLogic.BattleContextStates;
-using ProjectCore.BattleLogic.EnvironmentProviders;
+using Project.BattleLogic.BattleContextStates;
+using Project.BattleLogic.EnvironmentProviders;
 using UnityEngine;
 using Zenject;
 
-namespace ProjectCore.BattleLogic
+namespace Project.BattleLogic
 {
     public class BattleSceneInstaller : MonoInstaller
     {

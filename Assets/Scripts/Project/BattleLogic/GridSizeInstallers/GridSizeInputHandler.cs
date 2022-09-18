@@ -1,10 +1,11 @@
 using System;
+using ProjectShared;
 using ThirdParty.EventBus;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace ProjectCore.BattleLogic.GridSizeInstallers
+namespace Project.BattleLogic.GridSizeInstallers
 {
     public interface IGridSizeInputProvider
     {

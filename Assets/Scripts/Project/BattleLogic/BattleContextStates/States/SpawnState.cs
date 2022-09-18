@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using ThirdParty.StateMachine.States;
+﻿using ThirdParty.StateMachine.States;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
-namespace ProjectCore.BattleLogic.BattleContextStates.States
+namespace Project.BattleLogic.BattleContextStates.States
 {
     public class SpawnState : IBattleContextState, IPayloadableState<SpawnState.SpawnStatePayload>
     {

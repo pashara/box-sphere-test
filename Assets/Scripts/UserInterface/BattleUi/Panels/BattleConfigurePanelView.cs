@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using ProjectCore.ProjectShared;
+using ProjectShared;
 using ThirdParty.EventBus;
 using ThirdParty.TextMeshPro.UniRxExtensions;
 using TMPro;
@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace ProjectCore.BattleLogic.BattleUi.Panels
+namespace UserInterface.BattleUi.Panels
 {
     public class BattleConfigurePanelView : MonoBehaviour, IUiShowable
     {

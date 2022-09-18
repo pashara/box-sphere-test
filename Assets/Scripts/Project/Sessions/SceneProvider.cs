@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace ProjectCore.Sessions
+namespace Project.Sessions
 {
     public interface IScene
     {

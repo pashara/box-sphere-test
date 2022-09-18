@@ -1,10 +1,10 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using ProjectCore.Sessions;
+using Project.Sessions;
 using UnityEngine;
 using Zenject;
 
-namespace ProjectCore.BootstrapLogic
+namespace Project.BootstrapLogic
 {
     public class UserRunGameEmulator : MonoBehaviour
     {

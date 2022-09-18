@@ -1,7 +1,7 @@
-using ProjectCore.Sessions;
+using Project.Sessions;
 using Zenject;
 
-namespace ProjectCore.BootstrapLogic
+namespace Project.BootstrapLogic
 {
     public class BootstrapSceneInstaller : MonoInstaller
     {

@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace ProjectCore.ProjectShared
+namespace ProjectShared
 {
     public interface IUiShowable
     {

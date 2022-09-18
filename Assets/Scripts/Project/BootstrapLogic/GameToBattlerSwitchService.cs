@@ -1,10 +1,10 @@
 using System;
-using ProjectCore.CustomSceneManagement;
-using ProjectCore.ProjectShared.Sessions;
-using ProjectCore.Sessions;
+using Project.CustomSceneManagement;
+using Project.Sessions;
+using ProjectShared.Sessions;
 using UnityEngine;
 
-namespace ProjectCore.BootstrapLogic
+namespace Project.BootstrapLogic
 {
     public interface ISessionRunner
     {

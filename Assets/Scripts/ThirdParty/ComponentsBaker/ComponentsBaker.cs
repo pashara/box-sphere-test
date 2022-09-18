@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectCore.ComponentsBaker
+namespace ThirdParty.ComponentsBaker
 {
     public abstract class ComponentsBaker : MonoBehaviour
     {

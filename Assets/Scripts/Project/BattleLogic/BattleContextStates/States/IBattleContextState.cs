@@ -1,6 +1,6 @@
 ﻿using ThirdParty.StateMachine.States;
 
-namespace ProjectCore.BattleLogic.BattleContextStates.States
+namespace Project.BattleLogic.BattleContextStates.States
 {
     public interface IBattleContextState : IState
     {

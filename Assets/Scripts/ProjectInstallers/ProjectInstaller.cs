@@ -1,8 +1,9 @@
-using ProjectCore.Sessions;
+using Project.CustomSceneManagement;
+using Project.Sessions;
 using ThirdParty.EventBus;
 using Zenject;
 
-namespace ProjectCore.ProjectIntallers
+namespace ProjectInstallers
 {
     public class ProjectInstaller : MonoInstaller
     {
@@ -10,7 +11,7 @@ namespace ProjectCore.ProjectIntallers
         {
             Container.BindInterfacesTo<SessionInfo>().AsSingle();
             Container.BindInterfacesTo<EventBus>().AsSingle();
-            Container.BindInterfacesTo<CustomSceneManagement.CustomSceneManagement>().AsSingle();
+            Container.BindInterfacesTo<CustomSceneManagement>().AsSingle();
         }
     }
 }

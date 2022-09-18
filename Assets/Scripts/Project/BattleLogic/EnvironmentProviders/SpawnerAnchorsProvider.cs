@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ProjectCore.BattleLogic.Spawners;
+﻿using System.Collections.Generic;
+using Project.BattleLogic.Spawners;
 using UnityEngine;
 
-namespace ProjectCore.BattleLogic.EnvironmentProviders
+namespace Project.BattleLogic.EnvironmentProviders
 {
     public interface ISpawnerAnchorsProvider
     {

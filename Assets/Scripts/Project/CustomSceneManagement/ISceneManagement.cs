@@ -1,9 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
-using ProjectCore.Sessions;
+using Project.Sessions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ProjectCore.CustomSceneManagement
+namespace Project.CustomSceneManagement
 {
     public interface ISceneUnloadOperationResult
     {

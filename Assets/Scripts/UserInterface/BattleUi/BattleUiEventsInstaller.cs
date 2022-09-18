@@ -1,8 +1,8 @@
-using ProjectCore.BattleLogic.BattleUi.VisibilityServices;
-using ProjectCore.BattleLogic.GridSizeInstallers;
+using Project.BattleLogic.GridSizeInstallers;
+using Project.BattleLogic.VisibilityServices;
 using Zenject;
 
-namespace ProjectCore.BattleLogic.BattleUi
+namespace UserInterface.BattleUi
 {
     public class BattleUiEventsInstaller : MonoInstaller
     {

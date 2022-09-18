@@ -1,4 +1,4 @@
-﻿namespace ProjectCore
+﻿namespace ProjectShared
 {
     public static class EventKeys
     {

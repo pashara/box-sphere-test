@@ -1,4 +1,4 @@
-﻿namespace ProjectCore.Sessions
+﻿namespace Project.Sessions
 {
     public interface ISessionDTO
     {

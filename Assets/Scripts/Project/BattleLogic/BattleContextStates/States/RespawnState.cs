@@ -1,4 +1,4 @@
-﻿namespace ProjectCore.BattleLogic.BattleContextStates.States
+﻿namespace Project.BattleLogic.BattleContextStates.States
 {
     public class RespawnState : IBattleContextState
     {

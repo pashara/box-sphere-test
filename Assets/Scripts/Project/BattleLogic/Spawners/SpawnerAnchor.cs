@@ -1,9 +1,8 @@
-﻿using System;
-using ThirdParty.GizmosExtentsions;
+﻿using ThirdParty.GizmosExtentsions;
 using ThirdParty.StringHashCalculator;
 using UnityEngine;
 
-namespace ProjectCore.BattleLogic.Spawners
+namespace Project.BattleLogic.Spawners
 {
     public interface ISpawnerAnchor
     {

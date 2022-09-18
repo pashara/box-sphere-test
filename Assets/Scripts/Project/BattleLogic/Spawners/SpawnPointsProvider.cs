@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectCore.BattleLogic.Spawners
+namespace Project.BattleLogic.Spawners
 {
     public interface ISpawnPointsProvider
     {

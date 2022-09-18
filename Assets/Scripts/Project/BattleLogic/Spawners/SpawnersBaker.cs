@@ -1,10 +1,11 @@
 ﻿using System.Linq;
-using ProjectCore.BattleLogic.EnvironmentProviders;
+using Project.BattleLogic.EnvironmentProviders;
+using ThirdParty.ComponentsBaker;
 using UnityEngine;
 
-namespace ProjectCore.BattleLogic.Spawners
+namespace Project.BattleLogic.Spawners
 {
-    public class SpawnersBaker : ComponentsBaker.ComponentsBaker
+    public class SpawnersBaker : ComponentsBaker
     {
         [SerializeField] private SpawnerAnchorsProvider anchorsProvider;
         protected override void FindComponents()
