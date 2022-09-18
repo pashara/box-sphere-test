@@ -64,15 +64,55 @@ public partial class Contexts : Entitas.IContexts {
 //------------------------------------------------------------------------------
 public partial class Contexts {
 
+    public const string AttackTarget = "AttackTarget";
+    public const string BattlerSourceId = "BattlerSourceId";
     public const string CharacterReference = "CharacterReference";
+    public const string Id = "Id";
+    public const string TeamComponent = "TeamComponent";
     public const string TeamId = "TeamId";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
+        battler.AddEntityIndex(new Entitas.EntityIndex<BattlerEntity, int>(
+            AttackTarget,
+            battler.GetGroup(BattlerMatcher.AttackTarget),
+            (e, c) => ((ECS.Components.AttackTargetComponent)c).Value));
+
+        stats.AddEntityIndex(new Entitas.PrimaryEntityIndex<StatsEntity, int>(
+            BattlerSourceId,
+            stats.GetGroup(StatsMatcher.BattlerSourceId),
+            (e, c) => ((ECS.Components.BattlerSourceIdComponent)c).Value));
+
         battler.AddEntityIndex(new Entitas.PrimaryEntityIndex<BattlerEntity, ProjectShared.Battler.ICharacter>(
             CharacterReference,
             battler.GetGroup(BattlerMatcher.CharacterReference),
             (e, c) => ((ECS.Components.CharacterReferenceComponent)c).Value));
+
+        battler.AddEntityIndex(new Entitas.PrimaryEntityIndex<BattlerEntity, int>(
+            Id,
+            battler.GetGroup(BattlerMatcher.Id),
+            (e, c) => ((ECS.Components.IdComponent)c).Value));
+        attacker.AddEntityIndex(new Entitas.PrimaryEntityIndex<AttackerEntity, int>(
+            Id,
+            attacker.GetGroup(AttackerMatcher.Id),
+            (e, c) => ((ECS.Components.IdComponent)c).Value));
+        stats.AddEntityIndex(new Entitas.PrimaryEntityIndex<StatsEntity, int>(
+            Id,
+            stats.GetGroup(StatsMatcher.Id),
+            (e, c) => ((ECS.Components.IdComponent)c).Value));
+        input.AddEntityIndex(new Entitas.PrimaryEntityIndex<InputEntity, int>(
+            Id,
+            input.GetGroup(InputMatcher.Id),
+            (e, c) => ((ECS.Components.IdComponent)c).Value));
+        team.AddEntityIndex(new Entitas.PrimaryEntityIndex<TeamEntity, int>(
+            Id,
+            team.GetGroup(TeamMatcher.Id),
+            (e, c) => ((ECS.Components.IdComponent)c).Value));
+
+        battler.AddEntityIndex(new Entitas.EntityIndex<BattlerEntity, TeamEntity>(
+            TeamComponent,
+            battler.GetGroup(BattlerMatcher.TeamComponent),
+            (e, c) => ((ECS.Components.TeamComponentComponent)c).Value));
 
         team.AddEntityIndex(new Entitas.PrimaryEntityIndex<TeamEntity, int>(
             TeamId,
@@ -83,8 +123,40 @@ public partial class Contexts {
 
 public static class ContextsExtensions {
 
+    public static System.Collections.Generic.HashSet<BattlerEntity> GetEntitiesWithAttackTarget(this BattlerContext context, int Value) {
+        return ((Entitas.EntityIndex<BattlerEntity, int>)context.GetEntityIndex(Contexts.AttackTarget)).GetEntities(Value);
+    }
+
+    public static StatsEntity GetEntityWithBattlerSourceId(this StatsContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<StatsEntity, int>)context.GetEntityIndex(Contexts.BattlerSourceId)).GetEntity(Value);
+    }
+
     public static BattlerEntity GetEntityWithCharacterReference(this BattlerContext context, ProjectShared.Battler.ICharacter Value) {
         return ((Entitas.PrimaryEntityIndex<BattlerEntity, ProjectShared.Battler.ICharacter>)context.GetEntityIndex(Contexts.CharacterReference)).GetEntity(Value);
+    }
+
+    public static BattlerEntity GetEntityWithId(this BattlerContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<BattlerEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    }
+
+    public static AttackerEntity GetEntityWithId(this AttackerContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<AttackerEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    }
+
+    public static StatsEntity GetEntityWithId(this StatsContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<StatsEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    }
+
+    public static InputEntity GetEntityWithId(this InputContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    }
+
+    public static TeamEntity GetEntityWithId(this TeamContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<TeamEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    }
+
+    public static System.Collections.Generic.HashSet<BattlerEntity> GetEntitiesWithTeamComponent(this BattlerContext context, TeamEntity Value) {
+        return ((Entitas.EntityIndex<BattlerEntity, TeamEntity>)context.GetEntityIndex(Contexts.TeamComponent)).GetEntities(Value);
     }
 
     public static TeamEntity GetEntityWithTeamId(this TeamContext context, int Value) {

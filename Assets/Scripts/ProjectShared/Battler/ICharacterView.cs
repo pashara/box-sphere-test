@@ -27,6 +27,7 @@ namespace ProjectShared.Battler
     
     public interface ICharacterView : ICharacterComponentsProvider
     {
+        GameObject GameObject { get; }
         void SetParent(Transform parent);
     }
 }

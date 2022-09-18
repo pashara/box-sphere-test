@@ -1,4 +1,5 @@
 ﻿using Project.Battlers.ViewConfiguring;
+using Project.MonoTarget;
 using ProjectShared.Battler;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Project.Battlers
         [SerializeField] private PositionHandler positionHandler;
         [SerializeField] private RotationHandler rotationHandler;
         [SerializeField] private CharacterComponentsContainer baseCharacterComponentsContainer;
+        [SerializeField] private GameObject aiRoot;
         private CharacterComponentsContainer _characterComponentsContainer;
 
         private CharacterComponentsContainer ComponentsContainer
@@ -31,10 +33,12 @@ namespace Project.Battlers
         
         public IPositionHandler PositionHandler => positionHandler;
         public IRotationHandler RotationHandler => rotationHandler;
-        
+        public GameObject AIRoot => aiRoot;
+
         public void Initialize(ICharacterView characterView)
         {
             characterView.SetParent(viewRoot);
+            characterView.GameObject.GetComponent<MonoBehaviourTarget>()?.SetTarget(this);
             ComponentsContainer.Merge(characterView.CharacterComponentsContainer);
         }
     }

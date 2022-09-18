@@ -10,22 +10,31 @@ public static class StatsComponentsLookup {
 
     public const int AttackPoints = 0;
     public const int AttackSpeed = 1;
-    public const int HealthPoints = 2;
-    public const int Speed = 3;
+    public const int BattlerSourceId = 2;
+    public const int HealthPoints = 3;
+    public const int Id = 4;
+    public const int Size = 5;
+    public const int Speed = 6;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
         "AttackPoints",
         "AttackSpeed",
+        "BattlerSourceId",
         "HealthPoints",
+        "Id",
+        "Size",
         "Speed"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(ECS.Components.AttackPointsComponent),
         typeof(ECS.Components.AttackSpeedComponent),
+        typeof(ECS.Components.BattlerSourceIdComponent),
         typeof(ECS.Components.HealthPointsComponent),
+        typeof(ECS.Components.IdComponent),
+        typeof(ECS.Components.SizeComponent),
         typeof(ECS.Components.SpeedComponent)
     };
 }

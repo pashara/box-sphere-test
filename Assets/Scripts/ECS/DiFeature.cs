@@ -7,7 +7,7 @@ namespace ECS
     {
         private DiContainer _diContainer;
 
-        protected DiFeature(DiContainer diContainer, string name) : base(name)
+        public DiFeature(DiContainer diContainer, string name) : base(name)
         {
             _diContainer = diContainer;
         }

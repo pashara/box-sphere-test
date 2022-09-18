@@ -1,4 +1,3 @@
-using System.Linq;
 using ProjectShared.Battler;
 using ThirdParty.ComponentsBaker;
 using UnityEngine;
@@ -7,11 +6,16 @@ namespace Project.Battlers.ViewConfiguring
 {
     public class CharacterComponentsBaker : ComponentsBaker
     {
+        [SerializeField] private GameObject source;
         [SerializeField] private GameObject target;
         
         protected override void FindComponents()
         {
-            var components = gameObject.GetComponentsInChildren<BaseCharacterComponent>();
+            if (source == null)
+            {
+                source = gameObject;
+            }
+            var components = source.GetComponentsInChildren<BaseCharacterComponent>();
             CharacterComponentsContainer container = null;
             var provider = target.GetComponent<ICharacterComponentsProvider>();
             

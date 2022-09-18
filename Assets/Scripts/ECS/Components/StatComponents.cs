@@ -1,7 +1,19 @@
 ﻿using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace ECS.Components
 {
+    
+    public abstract class BaseStatComponent : IStatComponent
+    {
+        public float Value;
+        
+        float IStatComponent.StatValue
+        {
+            get => Value;
+            set => Value = value;
+        }
+    }
     
     public interface IStatComponent : IComponent 
     {
@@ -9,53 +21,34 @@ namespace ECS.Components
     }
 
     [Stats]
-    public class HealthPointsComponent : IStatComponent
+    public class HealthPointsComponent : BaseStatComponent
     {
-        public float Value;
-
-        float IStatComponent.StatValue
-        {
-            get => Value;
-            set => Value = value;
-        }
     }
     
     [Stats]
-    public class AttackPointsComponent : IStatComponent
+    public class AttackPointsComponent : BaseStatComponent
     {
-        public float Value;
-        
+    }
 
-        float IStatComponent.StatValue
-        {
-            get => Value;
-            set => Value = value;
-        }
+    [Stats]
+    public class SpeedComponent : BaseStatComponent
+    {
     }
     
     [Stats]
-    public class SpeedComponent : IStatComponent
+    public class AttackSpeedComponent : BaseStatComponent
     {
-        public float Value;
-        
-
-        float IStatComponent.StatValue
-        {
-            get => Value;
-            set => Value = value;
-        }
     }
     
     [Stats]
-    public class AttackSpeedComponent : IStatComponent
+    public class SizeComponent : BaseStatComponent
     {
-        public float Value;
-        
+    }
 
-        float IStatComponent.StatValue
-        {
-            get => Value;
-            set => Value = value;
-        }
+    [Stats]
+    public class BattlerSourceIdComponent : IComponent
+    {
+        [PrimaryEntityIndex]
+        public int Value;
     }
 }

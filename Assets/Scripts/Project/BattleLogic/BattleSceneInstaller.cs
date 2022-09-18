@@ -1,5 +1,7 @@
 using Project.BattleLogic.BattleContextStates;
 using Project.BattleLogic.EnvironmentProviders;
+using Project.BattleLogic.SimpleAI;
+using Project.BattleLogic.SimpleAI.Factory;
 using Project.BattleLogic.Spawners;
 using Project.Factories;
 using UnityEngine;
@@ -24,6 +26,9 @@ namespace Project.BattleLogic
         {
             Container.BindInterfacesTo<CharacterFactory>().AsSingle();
             Container.BindInterfacesTo<CharacterViewFactory>().AsSingle();
+            
+            Container.BindInterfacesTo<MovementBehaviourFactory>().AsSingle();
+            Container.BindInterfacesTo<ActionsBehaviourFactory>().AsSingle();
         }
     }
 }

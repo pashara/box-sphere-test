@@ -6,6 +6,7 @@
         HealthPoints = 1,
         AttackSpeed = 100,
         AttackPoints = 200,
-        Speed = 300
+        Speed = 300,
+        Size = 400,
     }
 }

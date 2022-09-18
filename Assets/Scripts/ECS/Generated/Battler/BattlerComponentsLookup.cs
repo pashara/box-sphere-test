@@ -8,24 +8,33 @@
 //------------------------------------------------------------------------------
 public static class BattlerComponentsLookup {
 
-    public const int BattlerColorType = 0;
-    public const int CharacterReference = 1;
-    public const int Stats = 2;
-    public const int TeamComponent = 3;
+    public const int Alive = 0;
+    public const int AttackTarget = 1;
+    public const int BattlerColorType = 2;
+    public const int CharacterReference = 3;
+    public const int Id = 4;
+    public const int Killed = 5;
+    public const int TeamComponent = 6;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
+        "Alive",
+        "AttackTarget",
         "BattlerColorType",
         "CharacterReference",
-        "Stats",
+        "Id",
+        "Killed",
         "TeamComponent"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ECS.Components.AliveComponent),
+        typeof(ECS.Components.AttackTargetComponent),
         typeof(ECS.Components.BattlerColorTypeComponent),
         typeof(ECS.Components.CharacterReferenceComponent),
-        typeof(ECS.Components.StatsComponent),
+        typeof(ECS.Components.IdComponent),
+        typeof(ECS.Components.KilledComponent),
         typeof(ECS.Components.TeamComponentComponent)
     };
 }

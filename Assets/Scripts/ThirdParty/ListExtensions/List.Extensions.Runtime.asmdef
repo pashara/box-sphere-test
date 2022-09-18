@@ -1,0 +1,16 @@
+{
+    "name": "List.Extensions.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:00318db4094471b459654070a416ef39"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

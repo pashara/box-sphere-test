@@ -6,6 +6,7 @@ namespace ProjectShared.Battler
     {
         IPositionHandler PositionHandler { get; }
         IRotationHandler RotationHandler { get; }
+        GameObject AIRoot { get; }
 
         void Initialize(ICharacterView characterView);
     }

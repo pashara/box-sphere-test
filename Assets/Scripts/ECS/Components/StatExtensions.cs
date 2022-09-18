@@ -14,6 +14,7 @@ namespace ECS.Components
             { StatType.AttackSpeed, StatsComponentsLookup.AttackSpeed },
             { StatType.Speed, StatsComponentsLookup.Speed },
             { StatType.AttackPoints, StatsComponentsLookup.AttackPoints },
+            { StatType.Size, StatsComponentsLookup.Size },
         };
         
         private static Dictionary<StatType, Type> _statComponentTypes = new()
@@ -22,6 +23,7 @@ namespace ECS.Components
             { StatType.AttackSpeed, typeof(AttackSpeedComponent) },
             { StatType.Speed, typeof(SpeedComponent) },
             { StatType.AttackPoints, typeof(AttackPointsComponent) },
+            { StatType.Size, typeof(SizeComponent) },
         };
         
         public static bool TryGetStat(this StatsEntity entity, StatType statType, ref float value)
@@ -65,6 +67,28 @@ namespace ECS.Components
             component.StatValue = value;
 
             entity.ReplaceComponent(index, component);
+
+        }
+
+        public static void Copy(this StatsEntity source, StatsEntity destination)
+        {
+            foreach (var statComponentType in _statComponentTypes)
+            {
+                var statType = statComponentType.Key;
+                var type = statComponentType.Value;
+                if (!_statIndexes.TryGetValue(statType, out var index))
+                {
+                    continue;
+                }
+
+                var statComponent = source.GetComponent(index) as IStatComponent;
+                var component = destination.CreateComponent(index, type) as IStatComponent;
+
+                if (component == null || statComponent == null) continue;
+                
+                component.StatValue = statComponent.StatValue;
+                destination.ReplaceComponent(index, component);
+            }
 
         }
     }

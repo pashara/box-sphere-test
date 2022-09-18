@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,8 +28,8 @@ namespace ProjectShared.Battler.Components
     public interface ISizeComponent : ICharacterComponent, IReactiveFloatValue
     {
     }
-    
-    public interface IFindAreaComponent : ICharacterComponent, IReactiveFloatValue
+    public interface ICharacterDetectorComponent : ICharacterComponent, IReactiveFloatValue
     {
+        HashSet<ICharacter> HandledCharacters { get; }
     }
 }

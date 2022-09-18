@@ -1,4 +1,5 @@
 ﻿using Project.Battlers.ViewConfiguring;
+using Project.MonoTarget;
 using ProjectShared.Battler;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ namespace Project.Battlers
     {
         [SerializeField] private CharacterComponentsContainer characterComponentsContainer;
         [SerializeField] private float characterRadius;
+        [SerializeField] private MonoBehaviourTarget targetToCharacter;
         
         public ICharacterComponentsContainer CharacterComponentsContainer => characterComponentsContainer;
-        
+        public GameObject GameObject => gameObject;
+
         public void SetParent(Transform parent)
         {
             transform.SetParent(parent);

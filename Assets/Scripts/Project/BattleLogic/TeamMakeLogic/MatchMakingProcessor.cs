@@ -4,6 +4,7 @@ using Project.BattleLogic.EnvironmentProviders;
 using Project.BattleLogic.GridSizeInstallers;
 using Project.BattleLogic.Spawners;
 using Project.Configs.CharacterViewsProviding;
+using ProjectShared;
 using ProjectShared.Battler;
 using UnityEngine;
 
@@ -31,9 +32,9 @@ namespace Project.BattleLogic.TeamMakeLogic
             return (UnityEngine.Random.value > 0.5f) ? ViewType.Rectangle : ViewType.Circle;
         }
 
-        private ColorType CalculateColorType()
+        private CharacterColorType CalculateColorType()
         {
-            return (UnityEngine.Random.value > 0.5f) ? ColorType.Blue : ColorType.Orange;
+            return (UnityEngine.Random.value > 0.5f) ? CharacterColorType.Blue : CharacterColorType.Orange;
         }
 
         public Dictionary<int, Color> CalculateTeamsColor()
@@ -61,13 +62,13 @@ namespace Project.BattleLogic.TeamMakeLogic
                         point, 
                         CalculateColorType(),
                         CaclulateViewType(),
-                        UnityEngine.Random.Range(1f, 3f),
                         new Dictionary<StatType, float>()
                         {
                             { StatType.Speed , UnityEngine.Random.Range(2f, 11f)},
                             { StatType.AttackPoints , UnityEngine.Random.Range(2f, 50f)},
                             { StatType.AttackSpeed , UnityEngine.Random.Range(0.5f, 3f)},
                             { StatType.HealthPoints , UnityEngine.Random.Range(100f, 500f)},
+                            { StatType.Size , UnityEngine.Random.Range(1f, 3f)},
                         }
                         );
 
