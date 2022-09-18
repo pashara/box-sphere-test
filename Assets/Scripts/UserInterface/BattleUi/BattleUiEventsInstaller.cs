@@ -1,4 +1,5 @@
 using ProjectCore.BattleLogic.BattleUi.VisibilityServices;
+using ProjectCore.BattleLogic.GridSizeInstallers;
 using Zenject;
 
 namespace ProjectCore.BattleLogic.BattleUi
@@ -9,6 +10,8 @@ namespace ProjectCore.BattleLogic.BattleUi
         {
             Container.BindInterfacesTo<BattleConfigureVisibilityService>().AsSingle();
             Container.BindInterfacesTo<BattleCancelVisibilityService>().AsSingle();
+            
+            Container.BindInterfacesTo<GridSizeInputHandler>().AsSingle();
         }
     }
 }

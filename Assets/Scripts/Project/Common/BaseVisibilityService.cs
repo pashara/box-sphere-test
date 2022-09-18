@@ -5,6 +5,7 @@ namespace ProjectCore.Common.Visibility
     public interface IVisibilityService
     {
         ReadOnlyReactiveProperty<bool> OnVisibleState { get; }
+        void AffectVisibility(bool isVisible);
     }
     
     public abstract class BaseVisibilityService
@@ -15,6 +16,11 @@ namespace ProjectCore.Common.Visibility
         public BaseVisibilityService()
         {
             OnVisibleState = new (_visibleStateHandler);
+        }
+
+        public void AffectVisibility(bool isVisible)
+        {
+            _visibleStateHandler.Value = isVisible;
         }
     }
 }

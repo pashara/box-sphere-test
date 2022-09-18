@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Numerics;
 using ThirdParty.StateMachine.States;
+using UnityEngine;
+using Vector3 = System.Numerics.Vector3;
 
 namespace ProjectCore.BattleLogic.BattleContextStates.States
 {
@@ -10,7 +11,6 @@ namespace ProjectCore.BattleLogic.BattleContextStates.States
             
         public SpawnState()
         {
-            
         }
 
         public void Configure(SpawnStatePayload payload)
@@ -20,6 +20,7 @@ namespace ProjectCore.BattleLogic.BattleContextStates.States
         
         public void Enter()
         {
+            Debug.Log(_payload.size);
         }
 
         public void Exit()
@@ -29,7 +30,15 @@ namespace ProjectCore.BattleLogic.BattleContextStates.States
         
         public class SpawnStatePayload : IStatePayload
         {
-            public Dictionary<int, List<Vector3>> PointsByTeam { get; }
+            // public Dictionary<int, List<Vector3>> PointsByTeam { get; }
+
+            public Vector2Int size { get; set; }
+        }
+        public class SpawnStatePayload11 : IStatePayload
+        {
+            // public Dictionary<int, List<Vector3>> PointsByTeam { get; }
+
+            public Vector2Int size { get; set; }
         }
     }
 }

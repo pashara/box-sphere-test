@@ -39,13 +39,15 @@ namespace ProjectCore.BattleLogic.BattleUi
 
         public UniTask Show(bool isImmediately)
         {
-            mainCanvas.enabled = true;
+            // mainCanvas.enabled = true;
+            mainCanvas.gameObject.SetActive(true);
             return UniTask.CompletedTask;
         }
 
         public UniTask Hide(bool isImmediately)
         {
-            mainCanvas.enabled = false;
+            // mainCanvas.enabled = false;
+            mainCanvas.gameObject.SetActive(false);
             return UniTask.CompletedTask;
         }
         

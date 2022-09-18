@@ -11,7 +11,7 @@ namespace ProjectCore.BattleLogic.BattleUi.Panels
 {
     public class StopBattlePanelView : MonoBehaviour, IUiShowable
     {
-        [SerializeField] private Canvas mainCanvas;
+        [SerializeField] private GameObject root;
         [SerializeField] private Button stopButton;
         
         private IEventBus _eventBus;
@@ -24,13 +24,15 @@ namespace ProjectCore.BattleLogic.BattleUi.Panels
 
         public UniTask Show(bool isImmediately)
         {
-            mainCanvas.enabled = true;
+            // mainCanvas.enabled = true;
+            root.SetActive(true);
             return UniTask.CompletedTask;
         }
 
         public UniTask Hide(bool isImmediately)
         {
-            mainCanvas.enabled = false;
+            // mainCanvas.enabled = false;
+            root.SetActive(false);
             return UniTask.CompletedTask;
         }
 

@@ -10,29 +10,33 @@ namespace ThirdParty.StateMachine
         private readonly Dictionary<Type, T> _states = new();
         protected T ActualState => _actualState;
         private T _actualState = default;
+        protected IStatePayload Payload { get; set; }
         
-        public void Enter<T>()
+        public void Enter<TState>() where TState : T
         {
-            if (_actualState != null)
-            {
-                _actualState.Exit();
-            }
-            
-            if (!_states.TryGetValue(typeof(T), out var stateHandler) || stateHandler == null)
-            {
-                Debug.LogError($"No state {typeof(T)}");
-                return;
-            }
+            ExitActualState();
 
-            OnPreEnter();
-            ChangeState(stateHandler);
-            stateHandler.Enter();
-            OnPostEnter();
+            if (!TryGetHanlder(out T stateHandler))
+                return;
+            
+            ProcessEnterState(stateHandler);
         }
 
-        protected void Put(T instance)
+        public void Enter<TState, TPayload>(TPayload payload) where TState : T where TPayload : IStatePayload
         {
-            _states.Add(typeof(T), instance);
+            ExitActualState();
+
+            if (!TryGetHanlder(out T stateHandler))
+                return;
+            Payload = payload;
+            
+            ProcessEnterState(stateHandler);
+        }
+
+
+        protected void Put<TType>(TType instance) where TType : T
+        {
+            _states.Add(typeof(TType), instance);
         }
 
         protected void Clear()
@@ -49,12 +53,66 @@ namespace ThirdParty.StateMachine
             _actualState = state;
         }
 
-        protected virtual void OnPreEnter()
+        protected virtual void OnPreEnter(T state)
+        {
+            TryPutPayload(state, Payload);
+        }
+
+        protected virtual void OnPostEnter(T state)
+        {
+            Payload = null;
+        }
+
+        protected virtual void OnPreExit(T state)
         {
         }
 
-        protected virtual void OnPostEnter()
+        protected virtual void OnPostExit(T state)
         {
+        }
+
+        private bool TryGetHanlder(out T handler)
+        {
+            handler = default;
+            if (!_states.TryGetValue(typeof(T), out var stateHandler) || stateHandler == null)
+            {
+                Debug.LogError($"No state {typeof(T)}");
+                return false;
+            }
+
+            handler = stateHandler;
+            return false;
+        }
+
+        private void ExitActualState()
+        {
+            if (_actualState == null) return;
+            
+            var state = _actualState;
+            OnPreExit(state);
+            state.Exit();
+            OnPostExit(state);
+        }
+
+        private void ProcessEnterState(T stateHandler)
+        {
+            OnPreEnter(stateHandler);
+            ChangeState(stateHandler);
+            stateHandler.Enter();
+            OnPostEnter(stateHandler);
+        }
+        
+        private void TryPutPayload(T state, IStatePayload payload)
+        {
+            var method = state.GetType().GetMethod("Configure");
+            if (method != null)
+            {
+                var parameters = method.GetParameters();
+                if (parameters.Length == 1 && payload.GetType().IsAssignableFrom(parameters[0].ParameterType))
+                {
+                    method.Invoke(state, new object[] { payload });
+                }
+            }
         }
     }
 }

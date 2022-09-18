@@ -22,7 +22,10 @@ namespace ThirdParty.StateMachine.States
 
     public interface IStateMachine<T> where T : IState
     {
-        void Enter<T>();
+        void Enter<TState>() where TState : T;
+        void Enter<TState, TPayload>(TPayload payload) 
+            where TState : T 
+            where TPayload : IStatePayload;
     }
 
     public interface IStateMachineTickable<T> where T : IState

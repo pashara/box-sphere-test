@@ -15,7 +15,7 @@ namespace ProjectCore.BattleLogic.BattleUi.Panels
         [SerializeField] private TMP_InputField horizontalSize;
         [SerializeField] private TMP_InputField verticalSize;
         [SerializeField] private Button startBattleButton;
-        [SerializeField] private Canvas mainCanvas;
+        [SerializeField] private GameObject root;
 
         private IEventBus _eventBus;
 
@@ -28,13 +28,15 @@ namespace ProjectCore.BattleLogic.BattleUi.Panels
 
         public UniTask Show(bool isImmediately)
         {
-            mainCanvas.enabled = true;
+            // mainCanvas.enabled = true;
+            root.SetActive(true);
             return UniTask.CompletedTask;
         }
 
         public UniTask Hide(bool isImmediately)
         {
-            mainCanvas.enabled = false;
+            // mainCanvas.enabled = false;
+            root.SetActive(false);
             return UniTask.CompletedTask;
         }
 

@@ -4,6 +4,7 @@ using ProjectCore.BattleLogic.BattleContextStates.States;
 using ThirdParty.StateMachine;
 using ThirdParty.StateMachine.States;
 using UniRx;
+using UnityEngine;
 using Zenject;
 
 namespace ProjectCore.BattleLogic.BattleContextStates
@@ -12,28 +13,39 @@ namespace ProjectCore.BattleLogic.BattleContextStates
     {
         ReadOnlyReactiveProperty<IBattleContextState> CurrentState { get; }
     }
-    
-    public class BattleContextStateMachine : StateMachine<IBattleContextState>, IBattleContextStateMachine, IInitializable, IDisposable
+
+    public class BattleContextStateMachine : StateMachine<IBattleContextState>, 
+        IBattleContextStateMachine, IInitializable, IDisposable
     {
+        private IStatePayload enterStatePayload = null;
         private readonly ReactiveProperty<IBattleContextState> _currentState = new();
         public ReadOnlyReactiveProperty<IBattleContextState> CurrentState { get; }
 
         private readonly DiContainer _container;
-        
+
         public BattleContextStateMachine(DiContainer container)
         {
             CurrentState = new ReadOnlyReactiveProperty<IBattleContextState>(_currentState);
             _container = container;
+
+        }
+
+        public void Initialize()
+        {
             PutState<LinkDependenciesState>();
             PutState<ConfigureSpawnersState>();
             PutState<BattleState>();
             PutState<RespawnState>();
+            PutState<SpawnState>();
+            PutState<DespawnState>();
             
-        }
-        
-        public void Initialize()
-        {
-            Enter<ConfigureSpawnersState>();
+            
+            
+            Enter<SpawnState, SpawnState.SpawnStatePayload>(new ()
+            {
+                size = new Vector2Int(3, 3)
+            });
+            // Enter<ConfigureSpawnersState>();
         }
 
         public void Dispose()
@@ -43,7 +55,14 @@ namespace ProjectCore.BattleLogic.BattleContextStates
         
         private void PutState<T>(List<object> extraArgs = null) where T : IBattleContextState
         {
-            Put(_container.Instantiate<T>(extraArgs));
+            if (extraArgs == null || extraArgs.Count == 0)
+            {
+                Put<T>(_container.Instantiate<T>());
+            }
+            else
+            {
+                Put<T>(_container.Instantiate<T>(extraArgs));
+            }
         }
 
         protected override void ChangeState(IBattleContextState state)
