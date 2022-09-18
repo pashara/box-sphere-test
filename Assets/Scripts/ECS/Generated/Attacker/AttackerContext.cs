@@ -6,16 +6,16 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class MoverContext : Entitas.Context<MoverEntity> {
+public sealed partial class AttackerContext : Entitas.Context<AttackerEntity> {
 
-    public MoverContext()
+    public AttackerContext()
         : base(
-            MoverComponentsLookup.TotalComponents,
+            AttackerComponentsLookup.TotalComponents,
             0,
             new Entitas.ContextInfo(
-                "Mover",
-                MoverComponentsLookup.componentNames,
-                MoverComponentsLookup.componentTypes
+                "Attacker",
+                AttackerComponentsLookup.componentNames,
+                AttackerComponentsLookup.componentTypes
             ),
             (entity) =>
 
@@ -24,7 +24,7 @@ public sealed partial class MoverContext : Entitas.Context<MoverEntity> {
 #else
                 new Entitas.SafeAERC(entity),
 #endif
-            () => new MoverEntity()
+            () => new AttackerEntity()
         ) {
     }
 }

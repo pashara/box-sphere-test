@@ -26,8 +26,8 @@ namespace ECS.Components
     }
 
     [Battler]
-    public class TeamIdComponent : IComponent
+    public class TeamComponentComponent : IComponent
     {
-        public int Value;
+        public TeamEntity Value;
     }
 }

@@ -6,17 +6,17 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public static class GameComponentsLookup {
+public static class TeamComponentsLookup {
 
+    public const int TeamId = 0;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 1;
 
     public static readonly string[] componentNames = {
-
+        "TeamId"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(ECS.Components.TeamIdComponent)
     };
 }

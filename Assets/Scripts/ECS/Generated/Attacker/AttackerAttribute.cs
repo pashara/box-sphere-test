@@ -6,8 +6,8 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class MoverAttribute : Entitas.CodeGeneration.Attributes.ContextAttribute {
+public sealed class AttackerAttribute : Entitas.CodeGeneration.Attributes.ContextAttribute {
 
-    public MoverAttribute() : base("Mover") {
+    public AttackerAttribute() : base("Attacker") {
     }
 }

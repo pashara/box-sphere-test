@@ -21,20 +21,20 @@ public partial class Contexts : Entitas.IContexts {
 
     static Contexts _sharedInstance;
 
+    public AttackerContext attacker { get; set; }
     public BattlerContext battler { get; set; }
-    public GameContext game { get; set; }
     public InputContext input { get; set; }
-    public MoverContext mover { get; set; }
     public StatsContext stats { get; set; }
+    public TeamContext team { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { battler, game, input, mover, stats }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { attacker, battler, input, stats, team }; } }
 
     public Contexts() {
+        attacker = new AttackerContext();
         battler = new BattlerContext();
-        game = new GameContext();
         input = new InputContext();
-        mover = new MoverContext();
         stats = new StatsContext();
+        team = new TeamContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
             GetType().GetMethods(),
@@ -65,6 +65,7 @@ public partial class Contexts : Entitas.IContexts {
 public partial class Contexts {
 
     public const string CharacterReference = "CharacterReference";
+    public const string TeamId = "TeamId";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
@@ -72,6 +73,11 @@ public partial class Contexts {
             CharacterReference,
             battler.GetGroup(BattlerMatcher.CharacterReference),
             (e, c) => ((ECS.Components.CharacterReferenceComponent)c).Value));
+
+        team.AddEntityIndex(new Entitas.PrimaryEntityIndex<TeamEntity, int>(
+            TeamId,
+            team.GetGroup(TeamMatcher.TeamId),
+            (e, c) => ((ECS.Components.TeamIdComponent)c).Value));
     }
 }
 
@@ -79,6 +85,10 @@ public static class ContextsExtensions {
 
     public static BattlerEntity GetEntityWithCharacterReference(this BattlerContext context, ProjectShared.Battler.ICharacter Value) {
         return ((Entitas.PrimaryEntityIndex<BattlerEntity, ProjectShared.Battler.ICharacter>)context.GetEntityIndex(Contexts.CharacterReference)).GetEntity(Value);
+    }
+
+    public static TeamEntity GetEntityWithTeamId(this TeamContext context, int Value) {
+        return ((Entitas.PrimaryEntityIndex<TeamEntity, int>)context.GetEntityIndex(Contexts.TeamId)).GetEntity(Value);
     }
 }
 //------------------------------------------------------------------------------
@@ -96,11 +106,11 @@ public partial class Contexts {
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeContextObservers() {
         try {
+            CreateContextObserver(attacker);
             CreateContextObserver(battler);
-            CreateContextObserver(game);
             CreateContextObserver(input);
-            CreateContextObserver(mover);
             CreateContextObserver(stats);
+            CreateContextObserver(team);
         } catch(System.Exception) {
         }
     }

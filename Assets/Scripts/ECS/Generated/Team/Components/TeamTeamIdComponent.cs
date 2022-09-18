@@ -6,27 +6,27 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class BattlerEntity {
+public partial class TeamEntity {
 
-    public ECS.Components.TeamIdComponent teamId { get { return (ECS.Components.TeamIdComponent)GetComponent(BattlerComponentsLookup.TeamId); } }
-    public bool hasTeamId { get { return HasComponent(BattlerComponentsLookup.TeamId); } }
+    public ECS.Components.TeamIdComponent teamId { get { return (ECS.Components.TeamIdComponent)GetComponent(TeamComponentsLookup.TeamId); } }
+    public bool hasTeamId { get { return HasComponent(TeamComponentsLookup.TeamId); } }
 
     public void AddTeamId(int newValue) {
-        var index = BattlerComponentsLookup.TeamId;
+        var index = TeamComponentsLookup.TeamId;
         var component = (ECS.Components.TeamIdComponent)CreateComponent(index, typeof(ECS.Components.TeamIdComponent));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
     public void ReplaceTeamId(int newValue) {
-        var index = BattlerComponentsLookup.TeamId;
+        var index = TeamComponentsLookup.TeamId;
         var component = (ECS.Components.TeamIdComponent)CreateComponent(index, typeof(ECS.Components.TeamIdComponent));
         component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
     public void RemoveTeamId() {
-        RemoveComponent(BattlerComponentsLookup.TeamId);
+        RemoveComponent(TeamComponentsLookup.TeamId);
     }
 }
 
@@ -38,15 +38,15 @@ public partial class BattlerEntity {
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class BattlerMatcher {
+public sealed partial class TeamMatcher {
 
-    static Entitas.IMatcher<BattlerEntity> _matcherTeamId;
+    static Entitas.IMatcher<TeamEntity> _matcherTeamId;
 
-    public static Entitas.IMatcher<BattlerEntity> TeamId {
+    public static Entitas.IMatcher<TeamEntity> TeamId {
         get {
             if (_matcherTeamId == null) {
-                var matcher = (Entitas.Matcher<BattlerEntity>)Entitas.Matcher<BattlerEntity>.AllOf(BattlerComponentsLookup.TeamId);
-                matcher.componentNames = BattlerComponentsLookup.componentNames;
+                var matcher = (Entitas.Matcher<TeamEntity>)Entitas.Matcher<TeamEntity>.AllOf(TeamComponentsLookup.TeamId);
+                matcher.componentNames = TeamComponentsLookup.componentNames;
                 _matcherTeamId = matcher;
             }
 

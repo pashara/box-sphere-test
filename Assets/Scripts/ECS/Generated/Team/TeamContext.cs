@@ -6,16 +6,16 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameContext : Entitas.Context<GameEntity> {
+public sealed partial class TeamContext : Entitas.Context<TeamEntity> {
 
-    public GameContext()
+    public TeamContext()
         : base(
-            GameComponentsLookup.TotalComponents,
+            TeamComponentsLookup.TotalComponents,
             0,
             new Entitas.ContextInfo(
-                "Game",
-                GameComponentsLookup.componentNames,
-                GameComponentsLookup.componentTypes
+                "Team",
+                TeamComponentsLookup.componentNames,
+                TeamComponentsLookup.componentTypes
             ),
             (entity) =>
 
@@ -24,7 +24,7 @@ public sealed partial class GameContext : Entitas.Context<GameEntity> {
 #else
                 new Entitas.SafeAERC(entity),
 #endif
-            () => new GameEntity()
+            () => new TeamEntity()
         ) {
     }
 }

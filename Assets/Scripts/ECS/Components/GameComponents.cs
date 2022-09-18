@@ -1,19 +1,13 @@
+using Entitas;
+using Entitas.CodeGeneration.Attributes;
 using UnityEngine;
 
 namespace ECS.Components
 {
-    public class GameComponents : MonoBehaviour
+    [Team]
+    public class TeamIdComponent : IComponent
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        [PrimaryEntityIndex]
+        public int Value;
     }
 }
