@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ProjectCore.Sessions;
+using Zenject;
 
-public class ProjectInstaller : MonoBehaviour
+namespace ProjectCore.ProjectIntallers
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ProjectInstaller : MonoInstaller
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesTo<SessionInfo>().AsSingle();
+            Container.BindInterfacesTo<CustomSceneManagement.CustomSceneManagement>().AsSingle();
+        }
     }
 }
