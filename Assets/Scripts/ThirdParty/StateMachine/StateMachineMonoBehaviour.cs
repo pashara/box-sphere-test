@@ -16,7 +16,7 @@ namespace ThirdParty.StateMachine
         {
             ExitActualState();
 
-            if (!TryGetHanlder(out T stateHandler))
+            if (!TryGetHandler<TState>(out var stateHandler))
                 return;
 
             ProcessEnterState(stateHandler);
@@ -26,7 +26,7 @@ namespace ThirdParty.StateMachine
         {
             ExitActualState();
 
-            if (!TryGetHanlder(out T stateHandler))
+            if (!TryGetHandler<TState>(out var stateHandler))
                 return;
             Payload = payload;
 
@@ -72,10 +72,10 @@ namespace ThirdParty.StateMachine
         {
         }
 
-        private bool TryGetHanlder(out T handler)
+        private bool TryGetHandler<TType>(out T handler) where TType : T
         {
             handler = default;
-            if (!_states.TryGetValue(typeof(T), out var stateHandler) || stateHandler == null)
+            if (!_states.TryGetValue(typeof(TType), out var stateHandler) || stateHandler == null)
             {
                 Debug.LogError($"No state {typeof(T)}");
                 return false;
