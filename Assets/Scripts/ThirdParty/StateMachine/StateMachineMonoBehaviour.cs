@@ -8,9 +8,8 @@ namespace ThirdParty.StateMachine
     public class StateMachineMonoBehaviour<T> : MonoBehaviour, IStateMachine<T> where T : IState
     {
         private readonly Dictionary<Type, T> _states = new();
-        protected T ActualState => _actualState;
         private T _actualState = default;
-        protected IStatePayload Payload { get; set; }
+        private IStatePayload Payload { get; set; }
 
         public void Enter<TState>() where TState : T
         {
@@ -41,9 +40,9 @@ namespace ThirdParty.StateMachine
 
         protected void Clear()
         {
-            if (ActualState != null)
+            if (_actualState != null)
             {
-                ActualState.Exit();
+                _actualState.Exit();
             }
 
             _states.Clear();
