@@ -1,9 +1,13 @@
 {
-    "name": "ECS.Runtime",
+    "name": "Project.Core.Runtime",
     "rootNamespace": "",
     "references": [
+        "GUID:97c3b26ef02479d40a01302c3a4ba902",
+        "GUID:f1202501611a3304c8b79c606a209759",
         "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
-        "GUID:97c3b26ef02479d40a01302c3a4ba902"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:5c01796d064528144a599661eaab93a6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
