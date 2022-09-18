@@ -7,6 +7,7 @@ namespace Project.Battlers
     public class CharacterView : MonoBehaviour, ICharacterView
     {
         [SerializeField] private CharacterComponentsContainer characterComponentsContainer;
+        [SerializeField] private float characterRadius;
         
         public ICharacterComponentsContainer CharacterComponentsContainer => characterComponentsContainer;
         

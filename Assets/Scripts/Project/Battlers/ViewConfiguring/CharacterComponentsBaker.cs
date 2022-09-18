@@ -12,9 +12,13 @@ namespace Project.Battlers.ViewConfiguring
         protected override void FindComponents()
         {
             var components = gameObject.GetComponentsInChildren<BaseCharacterComponent>();
+            CharacterComponentsContainer container = null;
             var provider = target.GetComponent<ICharacterComponentsProvider>();
-            var container = (provider.CharacterComponentsContainer as CharacterComponentsContainer);
             
+            container = provider != null
+                ? provider.CharacterComponentsContainer as CharacterComponentsContainer
+                : target.GetComponent<CharacterComponentsContainer>();
+
             container.Clear();
             foreach (var component in components)
             {

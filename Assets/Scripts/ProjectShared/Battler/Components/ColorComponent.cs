@@ -1,5 +1,6 @@
 ﻿using UniRx;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ProjectShared.Battler.Components
 {
@@ -16,6 +17,11 @@ namespace ProjectShared.Battler.Components
     public interface ITeamIndicatorComponent : ICharacterComponent
     {
         ReactiveProperty<Color> Color { get; }
+    }
+    
+    public interface IAgentComponent : ICharacterComponent
+    {
+        NavMeshAgent Value { get; }
     }
     
     public interface ISizeComponent : ICharacterComponent, IReactiveFloatValue

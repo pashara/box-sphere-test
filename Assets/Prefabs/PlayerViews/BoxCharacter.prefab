@@ -420,6 +420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoxCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 5096121851109456936, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+      propertyPath: characterRadius
+      value: 0.55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f777a0c744194a24dba21bfd41582672, type: 3}
 --- !u!4 &2866103386202013956 stripped
