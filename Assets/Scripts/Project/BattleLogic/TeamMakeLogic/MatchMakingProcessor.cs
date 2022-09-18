@@ -4,6 +4,7 @@ using Project.BattleLogic.EnvironmentProviders;
 using Project.BattleLogic.GridSizeInstallers;
 using Project.BattleLogic.Spawners;
 using Project.Configs.CharacterViewsProviding;
+using ProjectShared.Battler;
 using UnityEngine;
 
 namespace Project.BattleLogic.TeamMakeLogic
@@ -59,7 +60,16 @@ namespace Project.BattleLogic.TeamMakeLogic
                         anchor.TeamId, 
                         point, 
                         CalculateColorType(),
-                        CaclulateViewType());
+                        CaclulateViewType(),
+                        UnityEngine.Random.Range(1f, 3f),
+                        new Dictionary<StatType, float>()
+                        {
+                            { StatType.Speed , UnityEngine.Random.Range(2f, 11f)},
+                            { StatType.AttackPoints , UnityEngine.Random.Range(2f, 50f)},
+                            { StatType.AttackSpeed , UnityEngine.Random.Range(0.5f, 3f)},
+                            { StatType.HealthPoints , UnityEngine.Random.Range(100f, 500f)},
+                        }
+                        );
 
                     result.Add(spawnInfo);
                 }

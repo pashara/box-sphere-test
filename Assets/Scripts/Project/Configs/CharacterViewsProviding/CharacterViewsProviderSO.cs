@@ -36,14 +36,6 @@ namespace Project.Configs.CharacterViewsProviding
         Circle = 1,
         Rectangle = 2,
     }
-    
-    public enum ColorType
-    {
-        None = 0,
-        Red = 1,
-        Blue = 2,
-        Orange = 3,
-    }
 
     public interface ICharacterViewProvider
     {
