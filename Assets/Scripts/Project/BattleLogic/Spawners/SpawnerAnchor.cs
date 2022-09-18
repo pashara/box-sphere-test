@@ -7,6 +7,7 @@ namespace Project.BattleLogic.Spawners
     public interface ISpawnerAnchor
     {
         int TeamId { get; }
+        Color Color { get; }
         Vector3 Position { get; }
     }
     
@@ -15,6 +16,8 @@ namespace Project.BattleLogic.Spawners
         [SerializeField] private Color color;
         [SerializeField] private string teamIdentifier;
 
+
+        public Color Color => color;
         public int TeamId => teamIdentifier.KeyHash();
         public Vector3 Position => transform.position;
 

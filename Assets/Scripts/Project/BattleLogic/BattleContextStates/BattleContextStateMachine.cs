@@ -40,12 +40,7 @@ namespace Project.BattleLogic.BattleContextStates
             PutState<DespawnState>();
             
             
-            
-            Enter<SpawnState, SpawnState.SpawnStatePayload>(new ()
-            {
-                size = new Vector2Int(3, 3)
-            });
-            // Enter<ConfigureSpawnersState>();
+            Enter<ConfigureSpawnersState>();
         }
 
         public void Dispose()

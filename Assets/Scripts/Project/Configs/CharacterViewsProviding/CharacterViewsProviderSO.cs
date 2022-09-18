@@ -7,18 +7,6 @@ using UnityEngine;
 
 namespace Project.Configs.CharacterViewsProviding
 {
-    public enum ViewType
-    {
-        None = 0,
-        Circle = 1,
-        Rectangle = 2,
-    }
-
-    public interface ICharacterViewProvider
-    {
-        GameObject GetViewPrefab(ViewType viewType);
-    }
-    
     [CreateAssetMenu]
     public class CharacterViewsProviderSO : ScriptableObject, ICharacterViewProvider
     {
@@ -40,5 +28,25 @@ namespace Project.Configs.CharacterViewsProviding
             return null;
 
         }
+    }
+    
+    public enum ViewType
+    {
+        None = 0,
+        Circle = 1,
+        Rectangle = 2,
+    }
+    
+    public enum ColorType
+    {
+        None = 0,
+        Red = 1,
+        Blue = 2,
+        Orange = 3,
+    }
+
+    public interface ICharacterViewProvider
+    {
+        GameObject GetViewPrefab(ViewType viewType);
     }
 }

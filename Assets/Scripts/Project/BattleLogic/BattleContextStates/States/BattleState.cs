@@ -1,15 +1,25 @@
-﻿namespace Project.BattleLogic.BattleContextStates.States
+﻿using Project.BattleLogic.VisibilityServices;
+
+namespace Project.BattleLogic.BattleContextStates.States
 {
     public class BattleState : IBattleContextState
     {
+        private readonly IBattleCancelVisibilityService _battleConfigureVisibilityService;
+
+        public BattleState(
+            IBattleCancelVisibilityService battleConfigureVisibilityService)
+        {
+            _battleConfigureVisibilityService = battleConfigureVisibilityService;
+        }
+        
         public void Enter()
         {
-            throw new System.NotImplementedException();
+            _battleConfigureVisibilityService.AffectVisibility(true);
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            _battleConfigureVisibilityService.AffectVisibility(false);
         }
     }
 }

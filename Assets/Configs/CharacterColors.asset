@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a257f734ef4f53ba5ecf554268f478, type: 3}
-  m_Name: PrefabsProvider
+  m_Script: {fileID: 11500000, guid: 758df232a0ff49baaab05c33f5e34c41, type: 3}
+  m_Name: CharacterColors
   m_EditorClassIdentifier: Project.Core.Runtime:Project.Configs.PrefabsProviding:PrefabsProvider
-  _characterWrapper: {fileID: 1153510440273400835, guid: 373fea90b969b9746ba4ab89405e0076, type: 3}
+  data:
+  - ColorType: 1
+    Color: {r: 1, g: 0, b: 0, a: 1}
+  - ColorType: 2
+    Color: {r: 0, g: 0.19135666, b: 1, a: 1}
+  - ColorType: 3
+    Color: {r: 1, g: 0.42834574, b: 0, a: 1}

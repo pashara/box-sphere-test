@@ -7,12 +7,12 @@ using Zenject;
 
 namespace Project.BattleLogic.GridSizeInstallers
 {
-    public interface IGridSizeInputProvider
+    public interface IGridSizeProvider
     {
         ReadOnlyReactiveProperty<Vector2Int> Size { get; }
     }
     
-    public class GridSizeInputHandler : IInitializable, IDisposable, IGridSizeInputProvider
+    public class GridSizeInputHandler : IInitializable, IDisposable, IGridSizeProvider
     {
         private CompositeDisposable _disposable = new();
         private int _verticalSize;

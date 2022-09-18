@@ -414,6 +414,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1623976148605377261, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+      propertyPath: characterComponents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623976148605377261, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+      propertyPath: characterComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 5002658169884170973}
+    - target: {fileID: 1623976148605377261, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+      propertyPath: characterComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 8015843474740906017}
+    - target: {fileID: 1623976148605377261, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+      propertyPath: characterComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 4695686314415384559}
     - target: {fileID: 2253147338042340142, guid: f777a0c744194a24dba21bfd41582672, type: 3}
       propertyPath: m_Name
       value: CircleCharacter
@@ -425,3 +441,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 462397413882610170, guid: f777a0c744194a24dba21bfd41582672, type: 3}
   m_PrefabInstance: {fileID: 2426510181154537726}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4533009053964874704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2253147338042340142, guid: f777a0c744194a24dba21bfd41582672, type: 3}
+  m_PrefabInstance: {fileID: 2426510181154537726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7075246144279634370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533009053964874704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f220b732c4b8a2a489a4372dd0f907fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4533009053964874704}

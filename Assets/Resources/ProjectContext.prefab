@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 2192354577139236329}
   - component: {fileID: 1555213715971846850}
   - component: {fileID: 8841426305476349547}
+  - component: {fileID: 543827031094074488}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -117,6 +118,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 8841426305476349547}
+  - {fileID: 543827031094074488}
   _installerPrefabs: []
   _findSiblingMonoInstallers: 0
   _parentNewObjectsUnderContext: 1
@@ -145,3 +147,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde5a2d82988a5a4e9b582afed5b7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &543827031094074488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6432126262711095579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0a24258b704d11bbf012deac2da408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsProvider: {fileID: 11400000, guid: 4438ed3b1ee5561438d91430443181a9, type: 2}
+  characterViewsProvider: {fileID: 11400000, guid: c6b0a6e4f6bd27e4ca17368e099256b7, type: 2}
+  colorsProvider: {fileID: 11400000, guid: f1081c6532ef5e548a06f6f1edd301d1, type: 2}

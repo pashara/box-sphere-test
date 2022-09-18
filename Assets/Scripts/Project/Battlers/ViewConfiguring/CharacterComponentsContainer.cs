@@ -7,15 +7,15 @@ namespace Project.Battlers.ViewConfiguring
 {
     public class CharacterComponentsContainer : MonoBehaviour, ICharacterComponentsContainer
     {
-        [SerializeField] private List<BaseCharacterComponent> _characterComponents; 
+        [SerializeField] private List<BaseCharacterComponent> characterComponents = new(); 
         
-        public IReadOnlyList<ICharacterComponent> Components => _characterComponents;
+        public IReadOnlyList<ICharacterComponent> Components => characterComponents;
         
         
         public bool TryGet<TType>(out TType component) where TType : ICharacterComponent
         {
             component = default;
-            var requestResult = _characterComponents.FirstOrDefault(x => x is TType);
+            var requestResult = characterComponents.FirstOrDefault(x => x is TType);
             if (requestResult == null)
                 return false;
 
@@ -26,12 +26,12 @@ namespace Project.Battlers.ViewConfiguring
 
         public void Put(BaseCharacterComponent item)
         {
-            _characterComponents.Add(item);
+            characterComponents.Add(item);
         }
 
         public void Clear()
         {
-            _characterComponents.Clear();
+            characterComponents.Clear();
         }
         
         
@@ -39,7 +39,7 @@ namespace Project.Battlers.ViewConfiguring
         {
             foreach (var component in container.Components)
             {
-                _characterComponents.Add(component as BaseCharacterComponent);
+                characterComponents.Add(component as BaseCharacterComponent);
             }
         }
     }

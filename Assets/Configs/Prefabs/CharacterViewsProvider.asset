@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 2329316bad8f457cb0691e1bdad991b6, type: 3}
   m_Name: CharacterViewsProvider
   m_EditorClassIdentifier: Project.Core.Runtime:Project.Configs.CharacterViewsProviding:CharacterViewsProviderSO
   data:
-  - ViewType: 0
-    Prefab: {fileID: 0}
+  - ViewType: 1
+    Prefab: {fileID: 7428052024491113686, guid: af373592cc014754d9210f0477c015f0, type: 3}
+  - ViewType: 2
+    Prefab: {fileID: 7428052024491113686, guid: a53a0fe4bd974004db6416052a598d75, type: 3}

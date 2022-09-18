@@ -4,18 +4,7 @@ using static Project.Configs.PrefabsProviding.PrefabKeys;
 
 namespace Project.Configs.PrefabsProviding
 {
-    public interface IPrefabsProvider
-    {
-        GameObject GetGameObject(int id);
-    }
-
-    public enum PrefabKeys
-    {
-        None = 0,
-        CharacterWrapper = 1
-    }
-    
-    public class PrefabsProvider : ScriptableObject, IPrefabsProvider
+    public class PrefabsProviderSO : ScriptableObject, IPrefabsProvider
     {
         [SerializeField] private CharacterWrapper _characterWrapper;
 
@@ -31,5 +20,16 @@ namespace Project.Configs.PrefabsProviding
             Debug.LogError($"Not configured prefab by ID {id}");
             return null;
         }
+    }
+    
+    public interface IPrefabsProvider
+    {
+        GameObject GetGameObject(int id);
+    }
+
+    public enum PrefabKeys
+    {
+        None = 0,
+        CharacterWrapper = 1
     }
 }

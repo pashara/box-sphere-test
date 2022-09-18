@@ -1,8 +1,10 @@
 ﻿using Project.BattleLogic.GridSizeInstallers;
+using Project.BattleLogic.TeamMakeLogic;
 using Project.BattleLogic.VisibilityServices;
 using ProjectShared;
 using ThirdParty.EventBus;
 using UniRx;
+using Zenject;
 
 namespace Project.BattleLogic.BattleContextStates.States
 {
@@ -11,20 +13,23 @@ namespace Project.BattleLogic.BattleContextStates.States
         private readonly CompositeDisposable _disposable = new();
         private readonly IBattleContextStateMachine _battleContextStateMachine;
         private readonly IBattleConfigureVisibilityService _battleConfigureVisibilityService;
-        private readonly IGridSizeInputProvider _gridSizeInputProvider;
+        private readonly IGridSizeProvider _gridSizeProvider;
         private readonly IEventBus _eventBus;
+        private readonly DiContainer _container;
 
         public ConfigureSpawnersState(
             IBattleContextStateMachine battleContextStateMachine,
             IBattleConfigureVisibilityService battleConfigureVisibilityService,
-            IGridSizeInputProvider gridSizeInputProvider,
-            IEventBus eventBus
+            IGridSizeProvider gridSizeProvider,
+            IEventBus eventBus,
+            DiContainer container
             )
         {
             _battleContextStateMachine = battleContextStateMachine;
             _battleConfigureVisibilityService = battleConfigureVisibilityService;
-            _gridSizeInputProvider = gridSizeInputProvider;
+            _gridSizeProvider = gridSizeProvider;
             _eventBus = eventBus;
+            _container = container;
         }
         
         public void Enter()
@@ -34,10 +39,8 @@ namespace Project.BattleLogic.BattleContextStates.States
             {
                 if (Validate())
                 {
-                    _battleContextStateMachine.Enter<SpawnState, SpawnState.SpawnStatePayload>(new ()
-                    {
-                        size = _gridSizeInputProvider.Size.Value
-                    });
+                    var data = CreatePayload();
+                    _battleContextStateMachine.Enter<SpawnState, SpawnState.SpawnStatePayload>(data);
                 }
             }).AddTo(_disposable);
         }
@@ -49,10 +52,19 @@ namespace Project.BattleLogic.BattleContextStates.States
 
         private bool Validate()
         {
-            return _gridSizeInputProvider.Size.Value.x > 0 &&
-                   _gridSizeInputProvider.Size.Value.y > 0 &&
-                   _gridSizeInputProvider.Size.Value.x < 8 &&
-                   _gridSizeInputProvider.Size.Value.y < 8;
+            return _gridSizeProvider.Size.Value.x > 0 &&
+                   _gridSizeProvider.Size.Value.y > 0 &&
+                   _gridSizeProvider.Size.Value.x < 8 &&
+                   _gridSizeProvider.Size.Value.y < 8;
+        }
+
+        private SpawnState.SpawnStatePayload CreatePayload()
+        {
+            var teamProcessor = _container.Instantiate<TeamMakeProcessor>();
+            var spawnData = teamProcessor.Calculate();
+            var teamsData = teamProcessor.CalculateTeamsColor();
+            var payload = new SpawnState.SpawnStatePayload(teamsData, spawnData);
+            return payload;
         }
     }
 }
