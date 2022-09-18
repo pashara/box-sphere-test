@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ThirdParty.StateMachine.States;
+using UnityEngine;
 
 namespace ThirdParty.StateMachine
 {
@@ -10,13 +11,23 @@ namespace ThirdParty.StateMachine
         protected T ActualState => _actualState;
         private T _actualState = default;
         
-        
         public void Enter<T>()
         {
             if (_actualState != null)
             {
                 _actualState.Exit();
             }
+            
+            if (!_states.TryGetValue(typeof(T), out var stateHandler) || stateHandler == null)
+            {
+                Debug.LogError($"No state {typeof(T)}");
+                return;
+            }
+
+            OnPreEnter();
+            ChangeState(stateHandler);
+            stateHandler.Enter();
+            OnPostEnter();
         }
 
         protected void Put(T instance)
@@ -31,6 +42,19 @@ namespace ThirdParty.StateMachine
                 ActualState.Exit();
             }
             _states.Clear();
+        }
+
+        protected virtual void ChangeState(T state)
+        {
+            _actualState = state;
+        }
+
+        protected virtual void OnPreEnter()
+        {
+        }
+
+        protected virtual void OnPostEnter()
+        {
         }
     }
 }

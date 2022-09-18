@@ -27,7 +27,7 @@ namespace ThirdParty.EventBus
     public class EventBus : IEventBus
     {
         private Subject<(int, object)> _sendInt = new();
-        private Subject<(string, object)> _sendString = new();
+        private Subject<(int, object)> _sendString = new();
         private Subject<(object, object)> _sendObject = new();
 
         public void Send(int id)
@@ -37,7 +37,7 @@ namespace ThirdParty.EventBus
 
         public void Send(string id)
         {
-            _sendString.OnNext((id, null));
+            _sendString.OnNext((id.GetHashCode(), null));
         }
 
         public void Send(object id)
@@ -52,7 +52,7 @@ namespace ThirdParty.EventBus
 
         public void Send<TPayload>(string id, TPayload payload)
         {
-            _sendString.OnNext((id, payload));
+            _sendString.OnNext((id.GetHashCode(), payload));
         }
 
         public void Send<TPayload>(object id, TPayload payload)
@@ -62,17 +62,18 @@ namespace ThirdParty.EventBus
 
         public IObservable<int> WasTriggered(int id)
         {
-            return _sendInt.Where(x => x.Item1 == id).Select(x => x.Item1);
+            return _sendInt.Where(x => x.Item1 == id).Select(x => id);
         }
 
         public IObservable<string> WasTriggered(string id)
         {
-            return _sendString.Where(x => x.Item1.Equals(id)).Select(x => x.Item1);
+            var idHash = id.GetHashCode();
+            return _sendString.Where(x => x.Item1.GetHashCode() == idHash).Select(x => id);
         }
 
         public IObservable<object> WasTriggered(object id)
         {
-            return _sendObject.Where(x => x.Item1.Equals(id)).Select(x => x.Item1);
+            return _sendObject.Where(x => x.Item1.Equals(id)).Select(x => id);
         }
 
         public IObservable<(int, TPayload)> WasTriggered<TPayload>(int id)
@@ -83,8 +84,9 @@ namespace ThirdParty.EventBus
 
         public IObservable<(string, TPayload)> WasTriggered<TPayload>(string id)
         {
-            return _sendString.Where(x => x.Item1.Equals(id) && x.Item2 is TPayload)
-                .Select(x => (x.Item1, (TPayload)x.Item2));
+            var idHash = id.GetHashCode();
+            return _sendString.Where(x => x.Item1.GetHashCode() == idHash && x.Item2 is TPayload)
+                .Select(x => (id, (TPayload)x.Item2));
         }
 
         public IObservable<(object, TPayload)> WasTriggered<TPayload>(object id)
