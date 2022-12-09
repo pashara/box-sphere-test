@@ -9,9 +9,7 @@ namespace ThirdParty.StateMachine
     {
         private readonly Dictionary<Type, T> _states = new();
         private T _actualState = default;
-        
-        private IStatePayload Payload { get; set; }
-        
+
         public void Enter<TState>() where TState : T
         {
             ExitActualState();
@@ -22,18 +20,19 @@ namespace ThirdParty.StateMachine
             ProcessEnterState(stateHandler);
         }
 
-        public void Enter<TState, TPayload>(TPayload payload) where TState : T where TPayload : IStatePayload
+        public void Enter<TState, TPayload>(TPayload payload) where TState : T, IPayloadableState<TPayload> where TPayload : IStatePayload
         {
             ExitActualState();
-
+            
             if (!TryGetHandler<TState>(out var stateHandler))
                 return;
-            Payload = payload;
+
+            var handler = stateHandler as IPayloadableState<TPayload>;
+            handler.Configure(payload);
             
             ProcessEnterState(stateHandler);
         }
-
-
+        
         protected void Put<TType>(TType instance) where TType : T
         {
             _states.Add(typeof(TType), instance);
@@ -55,12 +54,10 @@ namespace ThirdParty.StateMachine
 
         protected virtual void OnPreEnter(T state)
         {
-            TryPutPayload(state, Payload);
         }
 
         protected virtual void OnPostEnter(T state)
         {
-            Payload = null;
         }
 
         protected virtual void OnPreExit(T state)
@@ -100,19 +97,6 @@ namespace ThirdParty.StateMachine
             ChangeState(stateHandler);
             stateHandler.Enter();
             OnPostEnter(stateHandler);
-        }
-        
-        private void TryPutPayload(T state, IStatePayload payload)
-        {
-            var method = state.GetType().GetMethod("Configure");
-            if (method != null)
-            {
-                var parameters = method.GetParameters();
-                if (parameters.Length == 1 && payload.GetType().IsAssignableFrom(parameters[0].ParameterType))
-                {
-                    method.Invoke(state, new object[] { payload });
-                }
-            }
         }
     }
 }

@@ -1,14 +1,13 @@
 
 namespace ThirdParty.StateMachine.States
 {
-    public interface IStatePayload
-    {
-    }
+    public interface IStatePayload { }
     
-    public interface IPayloadableState<T> where T : IStatePayload
+    public interface IPayloadableState<T>
     {
         void Configure(T payload);
     }
+    
     public interface IState
     {
         void Enter();
@@ -24,7 +23,7 @@ namespace ThirdParty.StateMachine.States
     {
         void Enter<TState>() where TState : T;
         void Enter<TState, TPayload>(TPayload payload) 
-            where TState : T 
+            where TState : T, IPayloadableState<TPayload>
             where TPayload : IStatePayload;
     }
 
